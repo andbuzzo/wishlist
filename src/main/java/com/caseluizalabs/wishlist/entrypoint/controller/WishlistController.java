@@ -6,6 +6,7 @@ import com.caseluizalabs.wishlist.core.usecase.IsProductInWishlistUseCase;
 import com.caseluizalabs.wishlist.core.usecase.RemoveProductFromWishlistUseCase;
 import com.caseluizalabs.wishlist.entrypoint.dto.WishlistRequest;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/wishlist")
+@Tag(name = "Wishlist", description = "Operations related to the customer's wishlist")
 public class WishlistController {
 
     private final IsProductInWishlistUseCase isProductInWishlistUseCase;
