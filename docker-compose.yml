@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: wishlist-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - wishlist-net
+
+  app:
+    build: .
+    container_name: wishlist-app
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/wishlist
+    depends_on:
+      - mongo
+    networks:
+      - wishlist-net
+
+volumes:
+  mongo-data:
+
+networks:
+  wishlist-net:
+    driver: bridge
